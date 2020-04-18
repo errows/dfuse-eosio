@@ -10,8 +10,6 @@ on:
 jobs:
   lint:
     name: Build
-    env:
-      GOPRIVATE: github.com/dfuse-io/*
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -25,13 +23,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
       
-      - name: Granting private modules access
-        run: |
-          git config --global url."https://${{ secrets.GO_MODULES_TOKEN }}:x-oauth-basic@github.com/dfuse-io".insteadOf "https://github.com/dfuse-io" 
-
       - name: Build dfuseeos
         run: |
-          #go get -x
           go build -o dfuseeos ./cmd/dfuseeos
   
 # jobs:
