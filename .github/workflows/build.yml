@@ -30,6 +30,10 @@ jobs:
 
       - name: Build dfuseeos
         run: go build -o dfuseeos ./cmd/dfuseeos
+  
+      - name: Smoke Test
+        working-directory: tests
+        run: DEBUG=true E2E_TESTS=true go test
 
   # build:
   #   name: Build
